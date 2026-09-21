@@ -9,18 +9,18 @@
  * All functions are async so the future API-backed implementation is a
  * drop-in with no call-site changes.
  */
-import type {
-  Client,
-  Homepage,
-  Project,
-  Service,
-  SiteSettings,
+import {
+  type Client,
+  type Homepage,
+  type Project,
+  type Service,
+  type SiteSettings,
+  services as seedServices,
+  projects as seedProjects,
+  clients as seedClients,
+  siteSettings as seedSiteSettings,
+  homepage as seedHomepage,
 } from "@rangamai/shared";
-import { services as seedServices } from "@/lib/seed/services";
-import { projects as seedProjects } from "@/lib/seed/projects";
-import { clients as seedClients } from "@/lib/seed/clients";
-import { siteSettings as seedSiteSettings } from "@/lib/seed/siteSettings";
-import { homepage as seedHomepage } from "@/lib/seed/homepage";
 
 const byDisplayOrder = <T extends { displayOrder: number }>(a: T, b: T) =>
   a.displayOrder - b.displayOrder;

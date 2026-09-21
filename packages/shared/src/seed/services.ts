@@ -1,9 +1,10 @@
-import type { Service } from "@rangamai/shared";
+import type { Service } from "../types";
 
 /**
  * Seed services — real RANGAMAI offerings (ProductDescription.md §5, §6).
- * Ordering here mirrors the example order in §6. These are read through
- * `lib/content` accessors; a later phase swaps the source for the API.
+ * Ordering here mirrors the example order in §6. This is the single canonical
+ * copy: the API seed script imports it into Mongo, and the public site falls
+ * back to it when the API is unreachable.
  */
 export const services: Service[] = [
   {

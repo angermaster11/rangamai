@@ -8,10 +8,16 @@
     "packages/*"
   ],
   "scripts": {
+    "build:shared": "npm run build --workspace packages/shared",
+    "predev": "npm run build:shared",
     "dev": "npm run dev --workspace apps/web",
+    "prebuild": "npm run build:shared",
     "build": "npm run build --workspace apps/web",
     "start": "npm run start --workspace apps/web",
-    "lint": "npm run lint --workspace apps/web"
+    "lint": "npm run lint --workspace apps/web",
+    "dev:api": "npm run start:dev --workspace apps/api",
+    "dev:admin": "npm run dev --workspace apps/admin",
+    "seed": "npm run seed --workspace apps/api"
   },
   "engines": {
     "node": ">=20"

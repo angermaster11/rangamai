@@ -1,9 +1,9 @@
-import type { Client } from "@rangamai/shared";
+import type { Client } from "../types";
 
 /**
  * Seed clients (ProductDescription.md §9). Only `showPublicly: true` clients
  * appear under "Trusted By" on the public site. Logos are text-based
- * placeholders for now (Cloudinary uploads come in a later phase).
+ * placeholders for now (Cloudinary uploads managed via the admin dashboard).
  */
 export const clients: Client[] = [
   {

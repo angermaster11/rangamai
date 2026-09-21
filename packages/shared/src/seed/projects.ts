@@ -1,4 +1,4 @@
-import type { Project } from "@rangamai/shared";
+import type { Project } from "../types";
 
 /**
  * Seed projects / case studies (ProductDescription.md §7, §8).

@@ -1,9 +1,9 @@
-import type { Homepage } from "@rangamai/shared";
+import type { Homepage } from "../types";
 
 /**
  * Homepage CMS content (ProductDescription.md §4, §14).
  * Featured services/projects reference slugs from services.ts / projects.ts;
- * accessors resolve and order them. Admin-managed in a later phase.
+ * accessors resolve and order them. Admin-managed via the dashboard.
  */
 export const homepage: Homepage = {
   heroHeading: "AI-powered software, built to ship.",

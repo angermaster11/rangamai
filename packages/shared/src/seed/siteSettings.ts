@@ -1,8 +1,8 @@
-import type { SiteSettings } from "@rangamai/shared";
+import type { SiteSettings } from "../types";
 
 /**
  * Site-wide settings and contact info (ProductDescription.md §11).
- * Admin-managed in a later phase; configurable, never hardcoded in components.
+ * Admin-managed via the dashboard; configurable, never hardcoded in components.
  * Phone/WhatsApp are placeholders — swap for the real numbers when available.
  */
 const PHONE = "+91 90000 00000";
