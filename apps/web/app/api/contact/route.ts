@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { API_URL } from "@/lib/api";
 
 /**
- * Contact / lead endpoint.
+ * Contact / lead endpoint (server-side proxy).
  *
- * DEV-PHASE STUB — this validates and rate-limits the request and returns
- * proper success/error JSON, but it does NOT yet persist to MongoDB or send
- * email. In a later phase the marked TODO forwards the validated lead to the
- * NestJS API (which stores it and triggers Resend). The validation shape here
- * matches the future `LeadInput` contract so nothing about the client changes.
+ * Validates + honeypot-checks + rate-limits the submission, then forwards the
+ * clean lead to the NestJS API's `POST /leads` server-to-server (the browser
+ * never sees the API URL or talks to it directly). The API persists the lead
+ * to MongoDB; email notification is an honest dev-log stub there (no provider
+ * configured yet). Falls back to a logged no-op if the API isn't configured.
  */
 
 export const runtime = "nodejs";
@@ -93,15 +94,61 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // TODO (backend phase): forward the validated lead to the NestJS API, which
-  // persists it to MongoDB and sends a notification via Resend. Never store or
-  // email secrets; the API base URL comes from NEXT_PUBLIC_API_URL / server env.
-  // For now we just log server-side so the flow is observable in dev.
-  console.info("[contact] lead received (dev stub, not persisted):", {
-    name: parsed.data.name,
-    email: parsed.data.email,
-    service: parsed.data.service || "(unspecified)",
-  });
+  // Forward the validated lead to the NestJS API (server-to-server, so the API
+  // URL and CORS are never exposed to the browser). The API persists it to
+  // MongoDB and fires its (stubbed) notification. `website` (honeypot) and any
+  // empty optional strings are stripped so we send a clean LeadInput.
+  const { website: _hp, ...clean } = parsed.data;
+  void _hp;
+  const payload = Object.fromEntries(
+    Object.entries(clean).filter(([, v]) => v !== undefined && v !== ""),
+  );
 
-  return NextResponse.json({ ok: true });
+  if (!API_URL) {
+    // No backend configured — log so dev flow is observable, still succeed.
+    console.info("[contact] lead received (API not configured, not persisted):", {
+      name: parsed.data.name,
+      email: parsed.data.email,
+    });
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/api/leads`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      cache: "no-store",
+    });
+
+    if (res.status === 429) {
+      return NextResponse.json(
+        { ok: false, error: "Too many requests. Please try again in a minute." },
+        { status: 429 },
+      );
+    }
+
+    if (!res.ok) {
+      // Surface the API's field errors when present (shape matches the client).
+      const body = (await res.json().catch(() => null)) as
+        | { error?: string; fieldErrors?: Record<string, string[]> }
+        | null;
+      return NextResponse.json(
+        {
+          ok: false,
+          error: body?.error ?? "Something went wrong. Please try again.",
+          ...(body?.fieldErrors ? { fieldErrors: body.fieldErrors } : {}),
+        },
+        { status: res.status >= 400 && res.status < 500 ? 422 : 502 },
+      );
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[contact] failed to reach API:", err instanceof Error ? err.message : err);
+    return NextResponse.json(
+      { ok: false, error: "We couldn't submit your message right now. Please try again shortly." },
+      { status: 502 },
+    );
+  }
 }

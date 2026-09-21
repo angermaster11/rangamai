@@ -16,7 +16,13 @@ import { FinalCtaBand } from "@/components/sections/FinalCtaBand";
 
 type Params = { slug: string };
 
-/** Pre-render every published service at build time (SSG). */
+/**
+ * ISR: re-generate at most once every 60s so admin edits surface without a
+ * rebuild. Slugs added after build render on-demand (dynamicParams default).
+ */
+export const revalidate = 60;
+
+/** Pre-render every published service at build time (SSG), from the API/seed. */
 export async function generateStaticParams(): Promise<Params[]> {
   const services = await getServices();
   return services.map((s) => ({ slug: s.slug }));

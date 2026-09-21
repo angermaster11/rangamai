@@ -6,6 +6,9 @@ import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ContactForm } from "@/components/sections/ContactForm";
 
+/** ISR: refresh contact info (services list, settings) at most once every 60s. */
+export const revalidate = 60;
+
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
   description:

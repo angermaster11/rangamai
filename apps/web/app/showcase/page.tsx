@@ -6,6 +6,9 @@ import { ProjectCard } from "@/components/ui/ProjectCard";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { FinalCtaBand } from "@/components/sections/FinalCtaBand";
 
+/** ISR: refresh the showcase list at most once every 60s. */
+export const revalidate = 60;
+
 export const metadata: Metadata = buildMetadata({
   title: "Showcase",
   description:

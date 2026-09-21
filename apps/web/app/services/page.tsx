@@ -4,6 +4,9 @@ import { buildMetadata } from "@/lib/seo";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { JsonLd } from "@/components/ui/JsonLd";
+
+/** ISR: refresh the services list at most once every 60s. */
+export const revalidate = 60;
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { FinalCtaBand } from "@/components/sections/FinalCtaBand";
 

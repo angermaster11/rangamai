@@ -8,6 +8,9 @@ import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { FinalCtaBand } from "@/components/sections/FinalCtaBand";
 
+/** ISR: refresh about-page CMS/settings content at most once every 60s. */
+export const revalidate = 60;
+
 export const metadata: Metadata = buildMetadata({
   title: "About",
   description:

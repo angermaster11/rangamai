@@ -12,7 +12,10 @@ import { HowWeWork } from "@/components/sections/HowWeWork";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 import { FinalCta } from "@/components/sections/FinalCta";
 
-/** Homepage — statically generated from CMS/seed content. */
+/** ISR: refresh homepage CMS content at most once every 60s. */
+export const revalidate = 60;
+
+/** Homepage — generated from CMS content (API), seed fallback. */
 export default async function HomePage() {
   const [home, services, projects, clients] = await Promise.all([
     getHomepage(),
