@@ -25,6 +25,12 @@ interface PageMetaInput {
   /** Absolute or site-relative OG image URL. */
   ogImage?: string;
   type?: "website" | "article";
+  /**
+   * When true, `title` is used verbatim as the document title (no site-name
+   * template appended). Use for CMS/seed `metaTitle` values that already
+   * include branding, so we don't double-brand ("… | RANGAMAI — RANGAMAI").
+   */
+  absoluteTitle?: boolean;
 }
 
 /** Build a Next.js Metadata object with canonical + OpenGraph + Twitter. */
@@ -34,6 +40,7 @@ export function buildMetadata({
   path,
   ogImage,
   type = "website",
+  absoluteTitle = false,
 }: PageMetaInput): Metadata {
   const url = absoluteUrl(path);
   const image = ogImage
@@ -43,7 +50,7 @@ export function buildMetadata({
     : absoluteUrl("/opengraph-image");
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: url },
     openGraph: {
