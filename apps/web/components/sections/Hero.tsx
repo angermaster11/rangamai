@@ -1,0 +1,49 @@
+import { Sparkles } from "lucide-react";
+import type { Homepage } from "@rangamai/shared";
+import { Container } from "@/components/ui/Container";
+import { ButtonLink } from "@/components/ui/Button";
+
+/**
+ * Homepage hero. Single <h1> for the page (SEO/a11y heading hierarchy).
+ * Background uses a subtle radial glow built from tokens — no heavy imagery.
+ */
+export function Hero({ home }: { home: Homepage }) {
+  return (
+    <section className="relative overflow-hidden border-b border-border">
+      {/* Decorative gradient glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,color-mix(in_oklab,var(--primary)_14%,transparent),transparent)]"
+      />
+      <Container className="py-20 text-center sm:py-28 lg:py-32">
+        <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3.5 py-1.5 text-sm font-medium text-muted-foreground">
+          <Sparkles className="h-4 w-4 text-primary" aria-hidden />
+          AI-native software studio
+        </p>
+
+        <h1 className="mx-auto mt-6 max-w-4xl font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          {home.heroHeading}
+        </h1>
+
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          {home.heroSubheading}
+        </p>
+
+        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <ButtonLink href={home.heroPrimaryCta.href} size="lg">
+            {home.heroPrimaryCta.label}
+          </ButtonLink>
+          {home.heroSecondaryCta ? (
+            <ButtonLink
+              href={home.heroSecondaryCta.href}
+              size="lg"
+              variant="secondary"
+            >
+              {home.heroSecondaryCta.label}
+            </ButtonLink>
+          ) : null}
+        </div>
+      </Container>
+    </section>
+  );
+}
