@@ -42,11 +42,11 @@ export default async function ContactPage() {
           {/* Intro + channels */}
           <div className="lg:col-span-2">
             <h1 className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Let's talk
+              Let&apos;s talk
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-              Tell us what you're building and we'll get back to you with the
-              simplest way to make it happen.
+              Tell us what you&apos;re building and we&apos;ll get back to you
+              with the simplest way to make it happen.
             </p>
 
             <div className="mt-8 space-y-3">

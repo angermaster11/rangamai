@@ -62,10 +62,10 @@ export function ContactForm({ services }: { services: Service[] }) {
           <Check className="h-6 w-6" aria-hidden />
         </span>
         <h2 className="mt-4 font-display text-xl font-semibold text-foreground">
-          Thanks — we've got your message.
+          Thanks — we&apos;ve got your message.
         </h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          We'll get back to you shortly. For anything urgent, reach us on
+          We&apos;ll get back to you shortly. For anything urgent, reach us on
           WhatsApp or email.
         </p>
         <Button

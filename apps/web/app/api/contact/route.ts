@@ -97,11 +97,10 @@ export async function POST(req: Request) {
   // persists it to MongoDB and sends a notification via Resend. Never store or
   // email secrets; the API base URL comes from NEXT_PUBLIC_API_URL / server env.
   // For now we just log server-side so the flow is observable in dev.
-  const { website: _hp, ...lead } = parsed.data;
   console.info("[contact] lead received (dev stub, not persisted):", {
-    name: lead.name,
-    email: lead.email,
-    service: lead.service || "(unspecified)",
+    name: parsed.data.name,
+    email: parsed.data.email,
+    service: parsed.data.service || "(unspecified)",
   });
 
   return NextResponse.json({ ok: true });

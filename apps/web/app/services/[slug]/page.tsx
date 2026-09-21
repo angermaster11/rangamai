@@ -102,7 +102,7 @@ export default async function ServiceDetailPage({
           {service.highlights?.length ? (
             <div className="lg:col-span-1">
               <h2 className="font-display text-2xl font-semibold text-foreground">
-                What's included
+                What&apos;s included
               </h2>
               <ul className="mt-4 space-y-3">
                 {service.highlights.map((h) => (
