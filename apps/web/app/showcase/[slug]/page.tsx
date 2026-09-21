@@ -176,7 +176,7 @@ export default async function ProjectDetailPage({
                       key={f}
                       className="flex gap-3 text-base leading-relaxed text-muted-foreground"
                     >
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden />
                       <span>{f}</span>
                     </li>
                   ))}
@@ -218,7 +218,7 @@ export default async function ProjectDetailPage({
                     <li key={s.slug}>
                       <Link
                         href={`/services/${s.slug}`}
-                        className="text-sm text-primary hover:underline"
+                        className="text-sm text-accent hover:underline"
                       >
                         {s.title}
                       </Link>

@@ -3,8 +3,8 @@ import { SITE_NAME } from "@/lib/seo";
 
 /**
  * Default social share image, generated at build time. Individual pages fall
- * back to this when they don't supply their own `ogImage`. Uses the brand
- * gradient + wordmark so shared links look intentional, not blank.
+ * back to this when they don't supply their own `ogImage`. Warm ink surface +
+ * amber wordmark and accent rule so shared links look intentional, not blank.
  */
 export const alt = "RANGAMAI — AI & Software Solutions";
 export const size = { width: 1200, height: 630 };
@@ -21,8 +21,8 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0e7490 140%)",
-          color: "#ffffff",
+          background: "#1c1917",
+          color: "#faf9f6",
           fontFamily: "sans-serif",
         }}
       >
@@ -31,14 +31,23 @@ export default function OpengraphImage() {
             fontSize: 34,
             letterSpacing: 4,
             textTransform: "uppercase",
-            color: "#a78bfa",
+            color: "#f59e0b",
           }}
         >
           {SITE_NAME}
         </div>
         <div
           style={{
-            marginTop: 24,
+            marginTop: 28,
+            height: 6,
+            width: 96,
+            borderRadius: 999,
+            background: "#f59e0b",
+          }}
+        />
+        <div
+          style={{
+            marginTop: 28,
             fontSize: 68,
             fontWeight: 700,
             lineHeight: 1.1,
@@ -51,7 +60,7 @@ export default function OpengraphImage() {
           style={{
             marginTop: 28,
             fontSize: 30,
-            color: "#cbd5e1",
+            color: "#d6d3d1",
             maxWidth: 860,
           }}
         >

@@ -24,7 +24,7 @@ export function Header() {
           href="/"
           className="font-display text-lg font-bold tracking-tight text-foreground"
         >
-          RANGAM<span className="text-primary">AI</span>
+          RANGAM<span className="text-accent">AI</span>
         </Link>
 
         {/* Desktop nav */}

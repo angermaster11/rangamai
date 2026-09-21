@@ -15,7 +15,7 @@ export function Card({
       className={cn(
         "rounded-xl border border-border bg-card p-6 text-card-foreground",
         interactive &&
-          "transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5",
+          "transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10",
         className,
       )}
     >

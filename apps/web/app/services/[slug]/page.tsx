@@ -107,7 +107,7 @@ export default async function ServiceDetailPage({
               <ul className="mt-4 space-y-3">
                 {service.highlights.map((h) => (
                   <li key={h} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden />
                     <span>{h}</span>
                   </li>
                 ))}

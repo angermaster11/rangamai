@@ -8,32 +8,32 @@
    ========================================================================== */
 
 :root {
-  /* Surfaces & text */
-  --background: #ffffff;
-  --foreground: #0f172a;
+  /* Surfaces & text — warm paper + ink (no blue undertone) */
+  --background: #faf9f6;
+  --foreground: #17161a;
   --card: #ffffff;
-  --card-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
+  --card-foreground: #17161a;
+  --muted: #f0eee8;
+  --muted-foreground: #6f6a63;
+  --border: #e5e1d8;
+  --input: #e5e1d8;
 
-  /* Brand */
-  --primary: #7c3aed;
-  --primary-foreground: #ffffff;
-  --secondary: #ede9fe;
-  --secondary-foreground: #4c1d95;
-  /* cyan-700: 4.5:1+ on white and on muted for small eyebrow/label text */
-  --accent: #0e7490;
+  /* Brand: primary = ink (buttons/wordmark), accent = amber (links/eyebrows) */
+  --primary: #17161a;
+  --primary-foreground: #faf9f6;
+  --secondary: #f3eee3;
+  --secondary-foreground: #92400e;
+  /* amber, darkened to clear 4.5:1 on paper/card/muted for small text */
+  --accent: #a84d08;
   --accent-foreground: #ffffff;
 
   /* Feedback */
-  --destructive: #dc2626;
+  --destructive: #b91c1c;
   --destructive-foreground: #ffffff;
-  --success: #059669;
+  --success: #047857;
 
-  /* Focus ring */
-  --ring: #7c3aed;
+  /* Focus ring — amber, so it reads as brand on both surfaces */
+  --ring: #a84d08;
 
   /* Radii */
   --radius: 0.75rem;
@@ -42,52 +42,52 @@
 /* Dark mode: applied automatically by preference, or forced via [data-theme]. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --background: #0f172a;
-    --foreground: #e2e8f0;
-    --card: #111827;
-    --card-foreground: #e2e8f0;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --border: #1e293b;
-    --input: #1e293b;
+    --background: #1c1917;
+    --foreground: #e7e5e4;
+    --card: #24211e;
+    --card-foreground: #e7e5e4;
+    --muted: #2e2a25;
+    --muted-foreground: #a8a29e;
+    --border: #332f2a;
+    --input: #332f2a;
 
-    --primary: #a78bfa;
-    --primary-foreground: #0f172a;
-    --secondary: #1e1b4b;
-    --secondary-foreground: #ddd6fe;
-    --accent: #22d3ee;
-    --accent-foreground: #0f172a;
+    --primary: #e7e5e4;
+    --primary-foreground: #1c1917;
+    --secondary: #2e2a25;
+    --secondary-foreground: #fbbf24;
+    --accent: #f59e0b;
+    --accent-foreground: #1c1917;
 
     --destructive: #f87171;
-    --destructive-foreground: #0f172a;
+    --destructive-foreground: #1c1917;
     --success: #34d399;
 
-    --ring: #a78bfa;
+    --ring: #f59e0b;
   }
 }
 
 :root[data-theme="dark"] {
-  --background: #0f172a;
-  --foreground: #e2e8f0;
-  --card: #111827;
-  --card-foreground: #e2e8f0;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --border: #1e293b;
-  --input: #1e293b;
+  --background: #1c1917;
+  --foreground: #e7e5e4;
+  --card: #24211e;
+  --card-foreground: #e7e5e4;
+  --muted: #2e2a25;
+  --muted-foreground: #a8a29e;
+  --border: #332f2a;
+  --input: #332f2a;
 
-  --primary: #a78bfa;
-  --primary-foreground: #0f172a;
-  --secondary: #1e1b4b;
-  --secondary-foreground: #ddd6fe;
-  --accent: #22d3ee;
-  --accent-foreground: #0f172a;
+  --primary: #e7e5e4;
+  --primary-foreground: #1c1917;
+  --secondary: #2e2a25;
+  --secondary-foreground: #fbbf24;
+  --accent: #f59e0b;
+  --accent-foreground: #1c1917;
 
   --destructive: #f87171;
-  --destructive-foreground: #0f172a;
+  --destructive-foreground: #1c1917;
   --success: #34d399;
 
-  --ring: #a78bfa;
+  --ring: #f59e0b;
 }
 
 /* Map tokens into Tailwind's theme so utilities like bg-background,

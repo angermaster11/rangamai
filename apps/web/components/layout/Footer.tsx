@@ -39,7 +39,7 @@ export async function Footer() {
               href="/"
               className="font-display text-lg font-bold tracking-tight text-foreground"
             >
-              RANGAM<span className="text-primary">AI</span>
+              RANGAM<span className="text-accent">AI</span>
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
               {settings.tagline}

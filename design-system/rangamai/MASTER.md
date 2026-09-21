@@ -13,7 +13,7 @@
 
 **Project:** RANGAMAI — AI-native software studio
 **Category:** AI / Software Solutions (B2B, premium/serious)
-**Style:** AI-Native UI — minimal chrome, neutral surfaces, purple + cyan accents
+**Style:** Ink & Amber — warm editorial, typography-led, one confident accent
 **Design Dials:** Motion 4/10 (Standard, CSS-first) | Density 5/10 (Standard)
 
 ---
@@ -24,49 +24,54 @@
 
 Tokens are CSS variables in `apps/web/app/globals.css`. Light and dark are BOTH
 first-class (dark applies via `prefers-color-scheme` and via `[data-theme]`).
-Surfaces are intentionally neutral (not tinted purple) for a premium/serious feel.
+Surfaces are **warm** (paper / charcoal, no blue undertone). **Primary = ink**
+(near-black; flips to paper in dark mode) and drives buttons, the wordmark, and
+the inverted CTA panel. A **single amber accent** carries all the colour: eyebrows,
+links, arrows, icon chips, focus ring, and the hero/CTA accent rule.
 
 **Light mode**
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Background | `#FFFFFF` | `--background` |
-| Foreground | `#0F172A` | `--foreground` |
+| Background (paper) | `#FAF9F6` | `--background` |
+| Foreground (ink) | `#17161A` | `--foreground` |
 | Card | `#FFFFFF` | `--card` |
-| Card Foreground | `#0F172A` | `--card-foreground` |
-| Muted | `#F1F5F9` | `--muted` |
-| Muted Foreground | `#475569` | `--muted-foreground` |
-| Border / Input | `#E2E8F0` | `--border` / `--input` |
-| Primary | `#7C3AED` | `--primary` |
-| On Primary | `#FFFFFF` | `--primary-foreground` |
-| Secondary | `#EDE9FE` | `--secondary` |
-| On Secondary | `#4C1D95` | `--secondary-foreground` |
-| Accent | `#0891B2` | `--accent` |
+| Card Foreground | `#17161A` | `--card-foreground` |
+| Muted | `#F0EEE8` | `--muted` |
+| Muted Foreground | `#6F6A63` | `--muted-foreground` |
+| Border / Input | `#E5E1D8` | `--border` / `--input` |
+| Primary (ink) | `#17161A` | `--primary` |
+| On Primary (paper) | `#FAF9F6` | `--primary-foreground` |
+| Secondary (cream) | `#F3EEE3` | `--secondary` |
+| On Secondary (amber-brown) | `#92400E` | `--secondary-foreground` |
+| Accent (amber) | `#A84D08` | `--accent` |
 | On Accent | `#FFFFFF` | `--accent-foreground` |
-| Destructive | `#DC2626` | `--destructive` |
-| Success | `#059669` | `--success` |
-| Ring (focus) | `#7C3AED` | `--ring` |
+| Destructive | `#B91C1C` | `--destructive` |
+| Success | `#047857` | `--success` |
+| Ring (focus, amber) | `#A84D08` | `--ring` |
 
 **Dark mode**
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Background | `#0F172A` | `--background` |
-| Foreground | `#E2E8F0` | `--foreground` |
-| Card | `#111827` | `--card` |
-| Muted | `#1E293B` | `--muted` |
-| Muted Foreground | `#94A3B8` | `--muted-foreground` |
-| Border / Input | `#1E293B` | `--border` / `--input` |
-| Primary | `#A78BFA` | `--primary` |
-| On Primary | `#0F172A` | `--primary-foreground` |
-| Secondary | `#1E1B4B` | `--secondary` |
-| On Secondary | `#DDD6FE` | `--secondary-foreground` |
-| Accent | `#22D3EE` | `--accent` |
-| Ring (focus) | `#A78BFA` | `--ring` |
+| Background (charcoal) | `#1C1917` | `--background` |
+| Foreground | `#E7E5E4` | `--foreground` |
+| Card | `#24211E` | `--card` |
+| Muted | `#2E2A25` | `--muted` |
+| Muted Foreground | `#A8A29E` | `--muted-foreground` |
+| Border / Input | `#332F2A` | `--border` / `--input` |
+| Primary (paper) | `#E7E5E4` | `--primary` |
+| On Primary (ink) | `#1C1917` | `--primary-foreground` |
+| Secondary | `#2E2A25` | `--secondary` |
+| On Secondary (amber) | `#FBBF24` | `--secondary-foreground` |
+| Accent (amber) | `#F59E0B` | `--accent` |
+| Ring (focus, amber) | `#F59E0B` | `--ring` |
 
-**Color Notes:** Purple primary carries brand + focus; cyan accent for eyebrows
-and secondary emphasis. Dark-mode brand values are lightened (violet/cyan) to
-hold ≥4.5:1 contrast on dark surfaces.
+**Color Notes:** Ink primary is the "voice" (buttons, wordmark, inverted CTA);
+amber is the only chromatic accent and does all the pointing (links, eyebrows,
+arrows, focus). Light accent is darkened amber (`#A84D08`) so small eyebrow/label
+text clears 4.5:1 on paper, card, AND muted. Dark accent (`#F59E0B`) sits on
+warm charcoal. No purple, no cyan, no blue-slate — warm neutrals throughout.
 
 ### Typography
 
@@ -128,9 +133,12 @@ Components live in `apps/web/components/ui`. Match these, don't re-invent.
 
 ## Style Guidelines
 
-**Style:** AI-Native / minimal. Clean neutral surfaces, generous whitespace,
-one accent language (purple + cyan). Subtle radial brand glow allowed on hero
-and CTA bands only (`radial-gradient` from `--primary`), never behind body text.
+**Style:** Ink & Amber — warm editorial, typography-led. Warm paper/charcoal
+surfaces, generous whitespace, one amber accent. **No decorative glow gradients.**
+Brand accent shows as a short amber rule (`h-1 w-16 bg-accent`) under the hero
+`<h1>` and on the CTA panel — not as a background wash. The final CTA is an
+inverted ink panel (`bg-primary`) with an amber button. Left-aligned hero
+(not centered) for an editorial, non-template feel.
 
 ### Page Pattern (homepage)
 
@@ -164,7 +172,11 @@ here — the spec calls for animations "sparingly").
 - ❌ **Invisible focus states** — the focus ring is required for a11y.
 - ❌ **GSAP / heavy JS animation** — CSS-first only for this project.
 - ❌ **Google Fonts `@import`/`<link>`** — use `next/font`.
-- ❌ Tinted-purple page backgrounds — surfaces stay neutral.
+- ❌ **Decorative radial glow gradients** — this brand is typography-led; accent
+  shows as a solid amber rule, not a background wash.
+- ❌ **Purple / cyan / blue-slate** — the palette is warm ink + amber only.
+- ❌ **More than one chromatic accent** — amber does all the pointing; everything
+  else is ink/paper/warm-grey.
 
 Note: unlike the generic skill default, **dark mode is a first-class, supported
 theme here** — not an anti-pattern.
