@@ -1,14 +1,13 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   RANGAMAI design tokens — "Ink & Amber" editorial system: warm paper and
-   charcoal surfaces, ink as the primary, a single amber accent (no purple,
-   cyan, or glow). Light + dark are both first-class. Tokens are CSS variables
-   so they stay portable and can be driven from the CMS later.
+   RANGAMAI admin — reuses the public site's Ink & Amber design tokens
+   (warm paper/charcoal surfaces, ink primary, single amber accent) so the two
+   apps feel like one product. Denser, more utilitarian layout than the site.
+   Light + dark are both first-class (dark via prefers-color-scheme / [data-theme]).
    ========================================================================== */
 
 :root {
-  /* Surfaces & text — warm paper + ink (no blue undertone) */
   --background: #faf9f6;
   --foreground: #17161a;
   --card: #ffffff;
@@ -18,28 +17,21 @@
   --border: #e5e1d8;
   --input: #e5e1d8;
 
-  /* Brand: primary = ink (buttons/wordmark), accent = amber (links/eyebrows) */
   --primary: #17161a;
   --primary-foreground: #faf9f6;
   --secondary: #f3eee3;
   --secondary-foreground: #92400e;
-  /* amber, darkened to clear 4.5:1 on paper/card/muted for small text */
   --accent: #a84d08;
   --accent-foreground: #ffffff;
 
-  /* Feedback */
   --destructive: #b91c1c;
   --destructive-foreground: #ffffff;
   --success: #047857;
 
-  /* Focus ring — amber, so it reads as brand on both surfaces */
   --ring: #a84d08;
-
-  /* Radii */
-  --radius: 0.75rem;
+  --radius: 0.625rem;
 }
 
-/* Dark mode: applied automatically by preference, or forced via [data-theme]. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --background: #1c1917;
@@ -90,8 +82,6 @@
   --ring: #f59e0b;
 }
 
-/* Map tokens into Tailwind's theme so utilities like bg-background,
-   text-foreground, border-border, text-primary etc. work. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -119,8 +109,8 @@
   --font-display: var(--font-space-grotesk);
 
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 0.25rem);
-  --radius-sm: calc(var(--radius) - 0.375rem);
+  --radius-md: calc(var(--radius) - 0.15rem);
+  --radius-sm: calc(var(--radius) - 0.3rem);
 }
 
 * {
@@ -144,14 +134,12 @@ h6 {
   font-family: var(--font-space-grotesk), var(--font-dm-sans), sans-serif;
 }
 
-/* Visible, consistent focus for keyboard users (a11y priority #1). */
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
-/* Respect reduced-motion: neutralise transitions/animations globally. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -161,20 +149,4 @@ h6 {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Subtle, standard-tier entrance used sparingly (respects reduced-motion). */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.animate-fade-up {
-  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
