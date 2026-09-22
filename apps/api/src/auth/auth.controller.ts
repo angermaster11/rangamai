@@ -8,6 +8,7 @@ import {
   Res,
   UseGuards,
 } from "@nestjs/common";
+import { Throttle } from "@nestjs/throttler";
 import { ConfigService } from "@nestjs/config";
 import type { CookieOptions, Response } from "express";
 import type { AdminUser as AdminUserDto } from "@rangamai/shared";
@@ -39,6 +40,9 @@ export class AuthController {
   /** Validates credentials, sets the HttpOnly cookie, returns the safe user. */
   @Post("login")
   @HttpCode(HttpStatus.OK)
+  // Tight per-route limit on top of the global 60/min: blunts password
+  // brute-forcing — 5 attempts / minute / IP, then 429.
+  @Throttle({ default: { limit: 5, ttl: 60_000 } })
   async login(
     @Body() dto: LoginDto,
     @Res({ passthrough: true }) res: Response,
