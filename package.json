@@ -17,10 +17,14 @@
     "lint": "npm run lint --workspace apps/web",
     "dev:api": "npm run start:dev --workspace apps/api",
     "dev:admin": "npm run dev --workspace apps/admin",
+    "app": "npm run build:shared && concurrently -k -n web,admin,api -c green,magenta,cyan \"npm run dev --workspace apps/web\" \"npm run dev --workspace apps/admin\" \"npm run start:dev --workspace apps/api\"",
     "seed": "npm run seed --workspace apps/api"
   },
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   },
   "overrides": {
     "multer": "^2.4.0"
