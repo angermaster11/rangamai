@@ -32,6 +32,10 @@ export class AuthController {
       secure: cookie.secure,
       sameSite: "lax",
       path: "/",
+      // Shared across subdomains (e.g. ".rangamai.in") when configured, so the
+      // admin app's middleware can see the cookie the API sets. Undefined in
+      // dev → host-only cookie on localhost.
+      domain: cookie.domain,
       // 1 day in ms — matches JWT_EXPIRES_IN default; JWT expiry is the real gate.
       maxAge: 24 * 60 * 60 * 1000,
     };

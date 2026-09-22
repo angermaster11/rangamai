@@ -8,7 +8,7 @@ export interface AppConfig {
   mongodbUri: string;
   jwt: { secret: string; expiresIn: string };
   cors: { origins: string[] };
-  cookie: { secure: boolean; name: string };
+  cookie: { secure: boolean; name: string; domain?: string };
   admin: { email: string; password: string; name: string };
   cloudinary: { cloudName: string; apiKey: string; apiSecret: string; folder: string };
 }
@@ -34,6 +34,9 @@ export default (): AppConfig => ({
   cookie: {
     secure: process.env.COOKIE_SECURE === "true",
     name: process.env.COOKIE_NAME ?? "rangamai_token",
+    // Set to ".rangamai.in" in prod so the cookie is shared across the
+    // web/admin/api subdomains. Leave unset in dev (host-only on localhost).
+    domain: process.env.COOKIE_DOMAIN || undefined,
   },
   admin: {
     email: process.env.ADMIN_EMAIL ?? "",
