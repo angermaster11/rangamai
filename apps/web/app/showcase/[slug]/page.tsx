@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Check, ExternalLink, Github } from "lucide-react";
 import { getProjectBySlug, getProjects, getServices } from "@/lib/content";
 import {
@@ -101,15 +102,15 @@ export default async function ProjectDetailPage({
             {project.shortDescription}
           </p>
 
-          {(project.liveUrl || project.githubUrl) && (
+          {((project.liveUrl && project.liveUrl !== "#") || (project.githubUrl && project.githubUrl !== "#")) && (
             <div className="mt-8 flex flex-wrap gap-3">
-              {project.liveUrl ? (
+              {(project.liveUrl && project.liveUrl !== "#") ? (
                 <ButtonLink href={project.liveUrl} size="md">
                   Visit live site
                   <ExternalLink className="h-4 w-4" aria-hidden />
                 </ButtonLink>
               ) : null}
-              {project.githubUrl ? (
+              {(project.githubUrl && project.githubUrl !== "#") ? (
                 <ButtonLink href={project.githubUrl} size="md" variant="secondary">
                   <Github className="h-4 w-4" aria-hidden />
                   Source
@@ -117,6 +118,19 @@ export default async function ProjectDetailPage({
               ) : null}
             </div>
           )}
+
+          {project.coverImage?.url ? (
+            <div className="mt-12 overflow-hidden rounded-2xl border border-border bg-muted">
+              <Image
+                src={project.coverImage.url}
+                alt={project.coverImage.alt || project.title}
+                width={project.coverImage.width || 1200}
+                height={project.coverImage.height || 630}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            </div>
+          ) : null}
         </Container>
       </section>
 
