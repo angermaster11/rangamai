@@ -251,6 +251,39 @@ export default async function ProjectDetailPage({
         </div>
       </Section>
 
+      {/* Gallery */}
+      {project.gallery?.length ? (
+        <section className="border-t border-border">
+          <Container className="py-14 sm:py-20">
+            <h2 className="font-display text-2xl font-semibold text-foreground">
+              Gallery
+            </h2>
+            <ul className="mt-8 grid gap-6 sm:grid-cols-2">
+              {project.gallery.map((img, i) => (
+                <li key={`${img.url}-${i}`}>
+                  <a
+                    href={img.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block overflow-hidden rounded-2xl border border-border bg-muted"
+                  >
+                    <div className="relative aspect-[16/10]">
+                      <Image
+                        src={img.url}
+                        alt={img.alt || `${project.title} screenshot ${i + 1}`}
+                        fill
+                        sizes="(min-width: 640px) 50vw, 100vw"
+                        className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </section>
+      ) : null}
+
       <FinalCtaBand
         heading="Want something like this?"
         subheading="Tell us about your project and we'll show you how we'd approach it."

@@ -100,9 +100,13 @@ export default async function ServiceDetailPage({
             <h2 className="font-display text-2xl font-semibold text-foreground">
               Overview
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              {service.description}
-            </p>
+            <div className="mt-4 space-y-4">
+              {service.description.split(/\n\s*\n/).map((para, i) => (
+                <p key={i} className="text-base leading-relaxed text-muted-foreground">
+                  {para}
+                </p>
+              ))}
+            </div>
           </div>
 
           {service.highlights?.length ? (
