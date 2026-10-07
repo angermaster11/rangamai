@@ -54,14 +54,14 @@ export function ServiceForm({ mode }: { mode: Mode }) {
       slug,
       shortDescription,
       description,
-      icon: icon || undefined,
+      icon: icon || null,
       highlights: linesToList(highlights),
       featured,
       published,
       seo:
         metaTitle || metaDescription
-          ? { metaTitle: metaTitle || undefined, metaDescription: metaDescription || undefined }
-          : undefined,
+          ? { metaTitle: metaTitle || null, metaDescription: metaDescription || null }
+          : null,
     };
 
     try {

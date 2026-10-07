@@ -87,24 +87,24 @@ export function ProjectForm({ mode }: { mode: Mode }) {
       slug,
       shortDescription,
       description,
-      problem: problem || undefined,
-      solution: solution || undefined,
+      problem: problem || null,
+      solution: solution || null,
       keyFeatures: linesToList(keyFeatures),
       techStack: csvToList(techStack),
-      metrics: cleanMetrics.length ? cleanMetrics : undefined,
-      client: client || undefined,
-      industry: industry || undefined,
+      metrics: cleanMetrics.length ? cleanMetrics : [],
+      client: client || null,
+      industry: industry || null,
       servicesUsed: csvToList(servicesUsed),
-      gallery: cleanGallery.length ? cleanGallery : undefined,
-      coverImage: coverUrl ? { url: coverUrl, alt: coverAlt } : undefined,
-      liveUrl: liveUrl || undefined,
-      githubUrl: githubUrl || undefined,
+      gallery: cleanGallery.length ? cleanGallery : [],
+      coverImage: coverUrl ? { url: coverUrl, alt: coverAlt } : null,
+      liveUrl: liveUrl || null,
+      githubUrl: githubUrl || null,
       featured,
       published,
       seo:
         metaTitle || metaDescription
-          ? { metaTitle: metaTitle || undefined, metaDescription: metaDescription || undefined }
-          : undefined,
+          ? { metaTitle: metaTitle || null, metaDescription: metaDescription || null }
+          : null,
     };
 
     try {

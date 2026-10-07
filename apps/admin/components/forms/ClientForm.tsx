@@ -41,10 +41,10 @@ export function ClientForm({ mode }: { mode: Mode }) {
 
     const payload = {
       companyName,
-      website: website || undefined,
-      industry: industry || undefined,
-      description: description || undefined,
-      logo: logoUrl ? { url: logoUrl, alt: logoAlt || companyName } : undefined,
+      website: website || null,
+      industry: industry || null,
+      description: description || null,
+      logo: logoUrl ? { url: logoUrl, alt: logoAlt || companyName } : null,
       showPublicly,
     };
 
